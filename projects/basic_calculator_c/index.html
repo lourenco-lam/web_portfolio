@@ -102,4 +102,63 @@ make<br>
                 <div class="card">
                     <h3>📥 Download Project</h3>
                     <p>Download the complete project files:</p>
-                    <a href="
+                    <a href="calculator-project.zip" class="btn btn-primary" style="margin-right: 1rem;">Download ZIP</a>
+                    <a href="https://github.com/yourusername/yourusername.github.io/tree/main/projects/calculator" class="btn btn-secondary">View on GitHub</a>
+                </div>
+
+                <div class="card">
+                    <h3>📄 Source Files</h3>
+                    
+                    <h4>calculator.h</h4>
+                    <div class="code-block">
+#ifndef CALCULATOR_H<br>
+#define CALCULATOR_H<br>
+<br>
+// Function declarations<br>
+double add(double a, double b);<br>
+double subtract(double a, double b);<br>
+double multiply(double a, double b);<br>
+double divide(double a, double b);<br>
+<br>
+#endif
+                    </div>
+
+                    <h4>Makefile</h4>
+                    <div class="code-block">
+CC = gcc<br>
+CFLAGS = -Wall -Wextra -std=c99<br>
+TARGET = calculator<br>
+SOURCES = calculator.c operations.c<br>
+<br>
+$(TARGET): $(SOURCES)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$(CC) $(CFLAGS) -o $(TARGET) $(SOURCES)<br>
+<br>
+clean:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;rm -f $(TARGET)<br>
+<br>
+.PHONY: clean
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Lourenço Júnior – All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+        }
+
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+</body>
+</html>
