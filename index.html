@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lourenço Júnior - Electronic Engineering Student & Developer</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Lourenço Júnior</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleDarkMode()">🌙</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Hi, I'm Lourenço 👋</h1>
+                <p>Electronic Engineering Student & Developer passionate about creating innovative solutions through programming and hardware design.</p>
+                <div class="hero-buttons">
+                    <a href="projects.html" class="btn btn-primary">View My Projects</a>
+                    <a href="about.html" class="btn btn-secondary">Learn More About Me</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Current Focus Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Current Focus</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>🎓 Education</h3>
+                        <p>I'm currently studying Electronic Engineering BSc at Lisbon University, Instituto Superior Técnico.</p>
+                    </div>
+                    <div class="card">
+                        <h3>💼 Professional Work</h3>
+                        <p>Alongside my studies, I work part-time as an Administrative Assistant at Negril - Soluçōes de Engenharia Lda., where I provide support to the engineering team across multiple ongoing projects.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Skills Snapshot</h2>
+                <div class="skills-container">
+                    <span class="skill-tag">C Programming</span>
+                    <span class="skill-tag">Arduino</span>
+                    <span class="skill-tag">Microsoft Excel</span>
+                    <span class="skill-tag">Computer Aided Design</span>
+                    <span class="skill-tag">Project Management</span>
+                    <span class="skill-tag">Technical Reporting</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Project -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Featured Project</h2>
+                <div class="card">
+                    <h3>Basic Calculator in C</h3>
+                    <p>A comprehensive calculator implementation in C demonstrating modular programming, header files, and Makefile usage. Features basic arithmetic operations with clean, maintainable code structure.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">C Programming</span>
+                        <span class="tech-tag">Makefile</span>
+                        <span class="tech-tag">Modular Design</span>
+                    </div>
+                    <a href="projects/calculator/" class="btn btn-primary">View Project Details</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Lourenço Júnior – All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/yourusername" class="social-link">GitHub</a>
+                <a href="https://linkedin.com/in/lourencomjr/" class="social-link">LinkedIn</a>
+                <a href="mailto:lourenco.moianejr@gmail.com" class="social-link">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode functionality
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+        }
+
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+</body>
+</html>
