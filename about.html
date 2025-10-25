@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Lourenço Júnior</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Lourenço Júnior</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleDarkMode()">🌙</button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="section">
+            <div class="container">
+                <div class="about-hero">
+                    <div>
+                        <img src="assets/profile.jpg" alt="Lourenço Júnior" class="profile-img" onerror="this.style.display='none'">
+                        <div style="text-align: center; margin-top: 1rem;">
+                            <p>📍 Lisbon, Portugal</p>
+                            <p>🎓 Electronic Engineering Student</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="section-title" style="text-align: left;">About Me</h1>
+                        <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">
+                            I'm Lourenço, an Electronic Engineering student passionate about Programming, Robotics, and Aviation.
+                        </p>
+                        <p style="margin-bottom: 1.5rem;">
+                            I enjoy building Arduino projects in my free time and exploring the aviation world. My academic journey at Instituto Superior Técnico has equipped me with strong foundations in electronics, programming, and project management.
+                        </p>
+                        <p>
+                            When I'm not studying or working, you can find me experimenting with new technologies, working on personal projects, or pursuing my interests in music and aviation.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Education & Experience -->
+                <div class="card-grid" style="margin-top: 4rem;">
+                    <div class="card">
+                        <h3>🎓 Education</h3>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h4>Lisbon University, Portugal</h4>
+                                <p><strong>BSc in Electronic Engineering</strong></p>
+                                <p>Expected graduation: 2026</p>
+                                <p>Focus on embedded systems, programming, and electronic design</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>💼 Experience</h3>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h4>Negril - Soluçōes de Engenharia Lda.</h4>
+                                <p><strong>Administrative Assistant</strong></p>
+                                <p>October 2024 – Present</p>
+                                <p>Supporting engineering teams with project management, Excel spreadsheets, technical reports, and monitoring project progress and costs.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <div style="margin-top: 4rem;">
+                    <h2 class="section-title">Skills & Technologies</h2>
+                    <div class="card-grid">
+                        <div class="card">
+                            <h3>Technical Skills</h3>
+                            <div class="skills-container" style="justify-content: start;">
+                                <span class="skill-tag">C Programming</span>
+                                <span class="skill-tag">Arduino</span>
+                                <span class="skill-tag">Microsoft Excel</span>
+                                <span class="skill-tag">CAD Design</span>
+                                <span class="skill-tag">HTML/CSS</span>
+                                <span class="skill-tag">Git</span>
+                                <span class="skill-tag">Makefile</span>
+                                <span class="skill-tag">Embedded Systems</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h3>Professional Skills</h3>
+                            <div class="skills-container" style="justify-content: start;">
+                                <span class="skill-tag">Project Management</span>
+                                <span class="skill-tag">Technical Reporting</span>
+                                <span class="skill-tag">Problem Solving</span>
+                                <span class="skill-tag">Team Collaboration</span>
+                                <span class="skill-tag">Documentation</span>
+                                <span class="skill-tag">Cost Monitoring</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hobbies -->
+                <div style="margin-top: 4rem;">
+                    <h2 class="section-title">Hobbies & Interests</h2>
+                    <div class="card">
+                        <div class="skills-container" style="justify-content: center;">
+                            <span class="skill-tag">🎵 Listening to Music</span>
+                            <span class="skill-tag">🎹 Playing Piano</span>
+                            <span class="skill-tag">✈️ Plane Spotting</span>
+                            <span class="skill-tag">🤖 Robotics</span>
+                            <span class="skill-tag">💻 Programming</span>
+                            <span class="skill-tag">🔧 Electronics</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Lourenço Júnior – All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/yourusername" class="social-link">GitHub</a>
+                <a href="https://linkedin.com/in/lourencomjr/" class="social-link">LinkedIn</a>
+                <a href="mailto:lourenco.moianejr@gmail.com" class="social-link">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+        }
+
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+</body>
+</html>
