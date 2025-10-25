@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Lourenço Júnior</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Lourenço Júnior</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleDarkMode()">🌙</button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="section">
+            <div class="container">
+                <h1 class="section-title">My Projects</h1>
+                <p style="text-align: center; margin-bottom: 3rem;">A collection of my programming and hardware projects</p>
+
+                <!-- C Programming Projects -->
+                <h2 style="margin: 3rem 0 1.5rem 0; color: var(--primary-color);">C Programming</h2>
+                <div class="card-grid">
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>Basic Calculator</h3>
+                            <p>A modular calculator implementation in C with separate header and source files, demonstrating professional code organization and Makefile usage.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">C</span>
+                                <span class="tech-tag">Makefile</span>
+                                <span class="tech-tag">Modular Programming</span>
+                            </div>
+                            <a href="projects/calculator/" class="btn btn-primary">View Project</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Arduino Projects -->
+                <h2 style="margin: 3rem 0 1.5rem 0; color: var(--primary-color);">Arduino Projects</h2>
+                <div class="card-grid">
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>RC Car with Arduino</h3>
+                            <p>Remote-controlled car built with Arduino Uno, motor drivers, and wireless communication modules. Features precise motor control and responsive handling.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Arduino</span>
+                                <span class="tech-tag">C++</span>
+                                <span class="tech-tag">Electronics</span>
+                                <span class="tech-tag">Motor Control</span>
+                            </div>
+                            <a href="#" class="btn btn-secondary">Coming Soon</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>Air Quality Monitor</h3>
+                            <p>Air quality monitoring system using Arduino with laser dust sensor. Real-time particulate matter measurement with data logging capabilities.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Arduino</span>
+                                <span class="tech-tag">Sensors</span>
+                                <span class="tech-tag">Data Logging</span>
+                                <span class="tech-tag">Environmental</span>
+                            </div>
+                            <a href="#" class="btn btn-secondary">Coming Soon</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web Development -->
+                <h2 style="margin: 3rem 0 1.5rem 0; color: var(--primary-color);">Web Development</h2>
+                <div class="card-grid">
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>Portfolio Website</h3>
+                            <p>Responsive personal portfolio website built with pure HTML, CSS, and minimal JavaScript. Features dark mode toggle and mobile-first design.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">Responsive Design</span>
+                            </div>
+                            <a href="https://github.com/yourusername/yourusername.github.io" class="btn btn-primary">View Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Lourenço Júnior – All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/yourusername" class="social-link">GitHub</a>
+                <a href="https://linkedin.com/in/lourencomjr/" class="social-link">LinkedIn</a>
+                <a href="mailto:lourenco.moianejr@gmail.com" class="social-link">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+        }
+
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+</body>
+</html>
