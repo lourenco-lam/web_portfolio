@@ -107,27 +107,13 @@ make<br>
                 </div>
 
                 <div class="card">
-                    <h3>📄 Source Files</h3>
+                    <h3>📄 Source & Header Files</h3>
                     
                     <h4>calculator.c</h4>
                     <h4>calculator.h</h4>
                     <h4>operations.c</h4>
                     </div>
 
-                    <h4>Makefile</h4>
-                    <div class="code-block">
-CC = gcc<br>
-CFLAGS = -Wall -Wextra -std=c99<br>
-TARGET = calculator<br>
-SOURCES = calculator.c operations.c<br>
-<br>
-$(TARGET): $(SOURCES)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;$(CC) $(CFLAGS) -o $(TARGET) $(SOURCES)<br>
-<br>
-clean:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;rm -f $(TARGET)<br>
-<br>
-.PHONY: clean
                     </div>
                 </div>
             </div>
