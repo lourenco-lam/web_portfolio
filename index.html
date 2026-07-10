@@ -24,11 +24,15 @@
 
     <!-- Main Content -->
     <main class="main-content">
+
         <!-- Hero Section -->
         <section class="hero">
             <div class="container">
                 <h1>Hi, I'm Lourenço 👋</h1>
-                <p>Electronic Engineering Student & Developer passionate about creating innovative solutions through programming and hardware design.</p>
+                <p>
+                    Electronic Engineering Student & Developer passionate about creating
+                    innovative solutions through programming and hardware design.
+                </p>
                 <div class="hero-buttons">
                     <a href="projects.html" class="btn btn-primary">View My Projects</a>
                     <a href="about.html" class="btn btn-secondary">Learn More About Me</a>
@@ -40,14 +44,27 @@
         <section class="section">
             <div class="container">
                 <h2 class="section-title">Current Focus</h2>
+
                 <div class="card-grid">
                     <div class="card">
                         <h3>🎓 Education</h3>
-                        <p>I'm in the final year of my BSc in Electronic Engineering at Lisbon University, Instituto Superior Técnico. After graduating, I plan to continue my studies with a Master’s in Electronic Engineering to deepen my knowledge and work on more advanced projects.</p>
+                        <p>
+                            I'm in the final year of my BSc in Electronic Engineering at
+                            Lisbon University, Instituto Superior Técnico. After graduating,
+                            I plan to continue my studies with a Master’s in Electronic
+                            Engineering to deepen my knowledge and work on more advanced
+                            projects.
+                        </p>
                     </div>
+
                     <div class="card">
                         <h3>💼 Professional Work</h3>
-                        <p>Alongside my studies, I work part-time as an Administrative Assistant at Negril - Soluçōes de Engenharia Lda., where I provide support to the engineering team across multiple ongoing projects ensuring accurate and efficient project control.</p>
+                        <p>
+                            Alongside my studies, I work part-time as an Administrative
+                            Assistant at Negril - Soluções de Engenharia Lda., where I
+                            provide support to the engineering team across multiple ongoing
+                            projects, ensuring accurate and efficient project control.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -57,6 +74,7 @@
         <section class="section">
             <div class="container">
                 <h2 class="section-title">Skills Snapshot</h2>
+
                 <div class="skills-container">
                     <span class="skill-tag">C Programming</span>
                     <span class="skill-tag">Arduino</span>
@@ -72,24 +90,62 @@
         <section class="section">
             <div class="container">
                 <h2 class="section-title">Featured Project</h2>
+
                 <div class="card">
-                    <h3>Basic Calculator in C</h3>
-                    <p>A comprehensive calculator implementation in C demonstrating modular programming, header files, and Makefile usage. Features basic arithmetic operations with clean, maintainable code structure.</p>
+                    <h3>PDF Engineering Toolbox</h3>
+
+                    <p>
+                        A professional cross-platform desktop utility built for precision
+                        PDF and Word document manipulation. Engineered to streamline
+                        document control for technical construction reports, it features
+                        drag-and-drop merging, visual page extraction, and background
+                        Word-to-PDF conversion.
+                    </p>
+
+                    <p>
+                        The application utilizes a Model-View-Controller (MVC)
+                        architecture, features a custom dark-mode UI designed in Qt
+                        Designer, and is compiled into standalone native executables via
+                        automated GitHub Actions CI/CD pipelines.
+                    </p>
+
                     <div class="project-tech">
-                        <span class="tech-tag">C Programming</span>
-                        <span class="tech-tag">Makefile</span>
-                        <span class="tech-tag">Modular Design</span>
+                        <span class="tech-tag">Python 3</span>
+                        <span class="tech-tag">PySide6 (Qt)</span>
+                        <span class="tech-tag">Qt Designer</span>
+                        <span class="tech-tag">PyMuPDF</span>
+                        <span class="tech-tag">CI/CD</span>
                     </div>
-                    <a href="projects/basic_calculator_c/index.html" class="btn btn-primary">View Project Details</a>
+
+                    <div style="margin-top: 1.5rem; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <a href="https://github.com/lourenco-lam/pdf-toolbox/releases/download/PDF_Toolbox_v1.1.0/PDF-Toolbox.dmg"
+                           class="btn btn-primary">
+                            ⬇ macOS (.dmg)
+                        </a>
+
+                        <a href="https://github.com/lourenco-lam/pdf-toolbox/releases/download/PDF_Toolbox_v1.1.0/PDF-Toolbox-Windows.zip"
+                           class="btn btn-primary">
+                            ⬇ Windows (.zip)
+                        </a>
+
+                        <a href="https://github.com/lourenco-lam/pdf-toolbox"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn btn-secondary">
+                            GitHub Repo
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
+
     </main>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <p>&copy; 2025 Lourenço Júnior – All rights reserved.</p>
+
             <div class="social-links">
                 <a href="https://github.com/lourenco-lam" class="social-link">GitHub</a>
                 <a href="https://linkedin.com/in/lourencomjr/" class="social-link">LinkedIn</a>
@@ -101,14 +157,14 @@
     <script>
         // Dark mode functionality
         function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            const isDarkMode = document.body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDarkMode);
+            document.body.classList.toggle("dark-mode");
+            const isDarkMode = document.body.classList.contains("dark-mode");
+            localStorage.setItem("darkMode", isDarkMode);
         }
 
         // Check for saved dark mode preference
-        if (localStorage.getItem('darkMode') === 'true') {
-            document.body.classList.add('dark-mode');
+        if (localStorage.getItem("darkMode") === "true") {
+            document.body.classList.add("dark-mode");
         }
     </script>
 </body>
