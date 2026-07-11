@@ -338,29 +338,31 @@ body {
         padding: 0 1.25rem;
     }
 
-    /* Stack the navbar nicely */
+    /* Keep container as a row, but allow items to wrap to the next line */
     .nav-container {
-        flex-direction: column;
-        gap: 1rem;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
         padding: 1rem;
-        position: relative; /* Add this line! It tells the moon exactly where to anchor */
     }
     
+    /* Force the links to drop to a new line and center them */
     .nav-links {
-        flex-wrap: wrap;
+        width: 100%;
         justify-content: center;
+        flex-wrap: wrap;
         gap: 1rem;
+        margin-top: 1rem;
     }
 
-    /* Pin the toggle to the top right */
+    /* Ensure the toggle sits naturally on the right side of the top row */
     .theme-toggle {
-        position: absolute;
-        top: 0.75rem;
-        right: 1.25rem;
+        position: static;
         margin: 0;
     }
 
-    /* Push main content down further to account for taller stacked navbar */
+    /* Push main content down further to account for the two-row navbar */
     .main-content {
         margin-top: 8rem; 
     }
