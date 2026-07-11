@@ -338,35 +338,35 @@ body {
         padding: 0 1.25rem;
     }
 
-    /* Set up the container to wrap items */
+    /* Use CSS Grid for a completely rigid, bulletproof layout */
     .nav-container {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between; /* Pushes Logo left, Toggle right */
+        display: grid;
+        grid-template-columns: 1fr auto; /* Logo takes the left space, Button takes the exact width it needs on the right */
+        row-gap: 1rem;
         align-items: center;
-        padding: 1rem;
+        padding: 1rem 1.25rem;
     }
     
-    /* 1. Logo stays first (top left) */
     .logo {
-        order: 1;
+        grid-column: 1; /* First column */
+        grid-row: 1;    /* Top row */
+        text-align: left;
     }
 
-    /* 2. Move the Toggle to be second (top right) */
     .theme-toggle {
-        order: 2;
-        position: static;
+        grid-column: 2; /* Second column */
+        grid-row: 1;    /* Top row */
         margin: 0;
+        justify-self: end; /* Pushes it all the way to the right edge */
     }
     
-    /* 3. Force Links to be third (bottom row, centered) */
     .nav-links {
-        order: 3;
+        grid-column: 1 / -1; /* Spans across both columns */
+        grid-row: 2;         /* Bottom row */
         width: 100%;
         justify-content: center;
         flex-wrap: wrap;
         gap: 1rem;
-        margin-top: 1rem;
     }
 
     /* Push main content down further to account for the two-row navbar */
