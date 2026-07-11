@@ -357,3 +357,60 @@ body {
         flex-direction: column;
     }
 }
+
+/* --- Skills Carousel --- */
+.skills-carousel-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 1rem 0;
+}
+
+/* Optional: Creates a fade-out effect on the left and right edges */
+.skills-carousel-wrapper::before,
+.skills-carousel-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 60px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.skills-carousel-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-color) 0%, transparent 100%);
+}
+
+.skills-carousel-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-color) 0%, transparent 100%);
+}
+
+.skills-carousel-track {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+    /* 20s is the speed. Change to 30s to make it slower, or 15s to make it faster */
+    animation: slide-carousel 20s linear infinite; 
+}
+
+/* Pauses the sliding when the user hovers over it */
+.skills-carousel-track:hover {
+    animation-play-state: paused;
+}
+
+.skills-carousel-track .skill-tag {
+    white-space: nowrap;
+}
+
+@keyframes slide-carousel {
+    0% { 
+        transform: translateX(0); 
+    }
+    100% { 
+        /* Shifts exactly half the width minus half the gap for a perfect loop */
+        transform: translateX(calc(-50% - 0.5rem)); 
+    }
+}
