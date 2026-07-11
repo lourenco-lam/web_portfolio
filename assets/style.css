@@ -338,17 +338,30 @@ body {
         padding: 0 1.25rem;
     }
 
-    /* Keep container as a row, but allow items to wrap to the next line */
+    /* Set up the container to wrap items */
     .nav-container {
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: space-between; /* Pushes Logo left, Toggle right */
         align-items: center;
         padding: 1rem;
     }
     
-    /* Force the links to drop to a new line and center them */
+    /* 1. Logo stays first (top left) */
+    .logo {
+        order: 1;
+    }
+
+    /* 2. Move the Toggle to be second (top right) */
+    .theme-toggle {
+        order: 2;
+        position: static;
+        margin: 0;
+    }
+    
+    /* 3. Force Links to be third (bottom row, centered) */
     .nav-links {
+        order: 3;
         width: 100%;
         justify-content: center;
         flex-wrap: wrap;
@@ -356,15 +369,9 @@ body {
         margin-top: 1rem;
     }
 
-    /* Ensure the toggle sits naturally on the right side of the top row */
-    .theme-toggle {
-        position: static;
-        margin: 0;
-    }
-
     /* Push main content down further to account for the two-row navbar */
     .main-content {
-        margin-top: 8rem; 
+        margin-top: 8.5rem; 
     }
     
     /* Center the About section */
