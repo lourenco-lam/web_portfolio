@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Lourenço Moiane Jr.</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23011936'/><circle cx='50' cy='50' r='20' stroke='%2300A5E0' stroke-width='8' fill='none'/><path d='M50 30 V15 M50 70 V85 M30 50 H15 M70 50 H85' stroke='%2300A5E0' stroke-width='8' stroke-linecap='round'/></svg>">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Lourenço Moiane Jr.</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-controls">
+                <a href="projects.html" class="lang-switch">EN</a>
+                <button class="theme-toggle" onclick="toggleDarkMode()">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="section">
+            <div class="container">
+                <h1 class="section-title">My Projects</h1>
+                <p style="font-size: 1.5rem; text-align: center; margin-bottom: 1.5rem;">
+                    A collection of my programming, electronics, and hardware projects...
+                </p>
+
+                <h2 class="projects-section-title">Desktop Applications</h2>
+                <div class="card-grid">
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>PDF Toolbox</h3>
+                            <p class="justify-text">
+                                A professional cross-platform desktop utility built for precision PDF and Word document manipulation. 
+                                Engineered to streamline document control for technical construction reports, it features drag-and-drop 
+                                merging, visual page extraction, and background Word-to-PDF conversion.
+                            </p>
+                            <p class="justify-text">
+                                The application utilizes a Model-View-Controller (MVC) architecture, features a custom dark-mode UI designed 
+                                in Qt Designer, and is compiled into standalone native executables via automated GitHub Actions CI/CD pipelines.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python 3</span>
+                                <span class="tech-tag">PySide6 (Qt)</span>
+                                <span class="tech-tag">Qt Designer</span>
+                                <span class="tech-tag">PyMuPDF</span>
+                                <span class="tech-tag">CI/CD</span>
+                            </div>
+                            <div style="margin-top: 1.5rem; display: flex; gap: 10px; flex-wrap: wrap;">
+                                <a href="https://github.com/lourenco-lam/pdf-toolbox/releases/download/PDF_Toolbox_v1.1.0/PDF-Toolbox.dmg" class="btn btn-primary">
+                                    ⬇ macOS (.dmg)
+                                </a>
+                                <a href="https://github.com/lourenco-lam/pdf-toolbox/releases/download/PDF_Toolbox_v1.1.0/PDF-Toolbox-Windows.zip" class="btn btn-primary">
+                                    ⬇ Windows (.zip)
+                                </a>
+                                <a href="https://github.com/lourenco-lam/pdf-toolbox" target="_blank" class="btn btn-secondary">
+                                    GitHub Repo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="projects-section-title">Parental Control</h2>
+                <div class="card-grid">
+                    <div class="project-card featured-project">
+                        <div class="project-content">
+                            <h3>Child Safety Tag (Buddy TAG)</h3>
+                            <p class="justify-text">
+                                A compact, wireless electronic device designed to assist families and schools in monitoring children’s safety.
+                                The Buddy TAG alerts caregivers whenever a child moves beyond a pre-defined safe zone, the <strong>Buddy ZONE</strong>, 
+                                ensuring children remain protected during busy or distracting environments.
+                            </p>
+                            <p class="justify-text">
+                                Integrated with a mobile app, it allows easy setup, proximity notifications, and peace of mind.
+                                Developed as part of a final-year project at Instituto Superior Técnico, this project combines electronics,
+                                embedded systems, and software development to provide a complete safety solution for minors.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Arduino</span>
+                                <span class="tech-tag">Embedded Systems</span>
+                                <span class="tech-tag">Electronics</span>
+                                <span class="tech-tag">IoT</span>
+                                <span class="tech-tag">Child Safety</span>
+                            </div>
+                            <div style="margin-top: 1.5rem; display: flex; gap: 10px; flex-wrap: wrap;">
+                                <a href="http://web.tecnico.ulisboa.pt/~ist1106041/BuddyTe4m/" target="_blank" class="btn btn-primary">
+                                    Learn More
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="projects-section-title">C Programming</h2>
+                <div class="card-grid">
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>Basic Calculator</h3>
+                            <p class="justify-text">
+                                A modular calculator implementation in C with separate header and source files,
+                                demonstrating professional code organization and Makefile usage.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">C</span>
+                                <span class="tech-tag">Makefile</span>
+                                <span class="tech-tag">Modular Programming</span>
+                                <span class="tech-tag">Header Files</span>
+                            </div>
+                            <div style="margin-top: 1.5rem; display: flex; gap: 10px; flex-wrap: wrap;">
+                                <a href="projects/basic_calculator_c/index.html" class="btn btn-primary">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="projects-section-title">Arduino Projects</h2>
+                
+                <!-- SMS Plug Project (Big) -->
+                <div class="card-grid" style="margin-bottom: 2rem;">
+                    <div class="project-card featured-project">
+                        <div class="project-content">
+                            <h3>SMS-Controlled Smart Plug</h3>
+                            <p class="justify-text">
+                                A custom embedded system designed for reliable remote power management via GSM communication.
+                                Built around an Arduino Nano and SIM800C module, the device enables secure SMS-based control
+                                of electrical appliances, allowing users to remotely switch power on, off, or perform automatic restarts.
+                            </p>
+                            <p class="justify-text">
+                                Developed with a focus on reliability and practical deployment, the system incorporates relay
+                                control, authorized user verification, persistent configuration storage, and modular firmware
+                                architecture for secure remote operation of network and electronic equipment.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Arduino Nano</span>
+                                <span class="tech-tag">C++</span>
+                                <span class="tech-tag">SIM800C GSM</span>
+                                <span class="tech-tag">Relay Control</span>
+                                <span class="tech-tag">Embedded Systems</span>
+                            </div>
+                            <div style="margin-top: 1.5rem; display: flex; gap: 10px; flex-wrap: wrap;">
+                                <a href="#" class="btn btn-secondary">Coming Soon</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The other two (Side by side) -->
+                <div class="card-grid">
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>RC Car with Arduino</h3>
+                            <p class="justify-text">
+                                Remote-controlled car built with Arduino Uno, motor drivers, and wireless communication modules.
+                                Features precise motor control and responsive handling.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Arduino</span>
+                                <span class="tech-tag">C++</span>
+                                <span class="tech-tag">Electronics</span>
+                                <span class="tech-tag">Motor Control</span>
+                            </div>
+                            <div style="margin-top: 1.5rem; display: flex; gap: 10px; flex-wrap: wrap;">
+                                <a href="#" class="btn btn-secondary">Coming Soon</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>Air Quality Monitor</h3>
+                            <p class="justify-text">
+                                Air quality monitoring system using Arduino with laser dust sensor.
+                                Real-time particulate matter measurement with data logging capabilities.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Arduino</span>
+                                <span class="tech-tag">Sensors</span>
+                                <span class="tech-tag">Data Logging</span>
+                                <span class="tech-tag">Environmental</span>
+                            </div>
+                            <div style="margin-top: 1.5rem; display: flex; gap: 10px; flex-wrap: wrap;">
+                                <a href="#" class="btn btn-secondary">Coming Soon</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="projects-section-title">Web Development</h2>
+                <div class="card-grid">
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>Portfolio Website</h3>
+                            <p class="justify-text">
+                                Personal portfolio of an Electronic Engineering MSc student at Instituto 
+                                Superior Técnico. 
+                                Showcases projects spanning embedded systems (C/Arduino), software 
+                                development (Python/PySide6), and web design. Features responsive UI, 
+                                dark mode, and detailed documentation.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">Responsive Design</span>
+                            </div>
+                            <div style="margin-top: 1.5rem; display: flex; gap: 10px; flex-wrap: wrap;">
+                                <a href="https://github.com/lourenco-lam/web_portfolio/tree/main" class="btn btn-primary">View Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Lourenço Moiane Jr. – All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/lourenco-lam" class="social-link">GitHub</a>
+                <a href="https://linkedin.com/in/lourencomjr/" class="social-link">LinkedIn</a>
+                <a href="mailto:lourenco.moianejr@gmail.com" class="social-link">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+        }
+
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+</body>
+</html>
