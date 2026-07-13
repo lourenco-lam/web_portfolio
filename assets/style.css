@@ -334,6 +334,25 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* --- Language & Theme Controls --- */
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.lang-switch {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.lang-switch:hover {
+    color: var(--color-primary);
+}
+
 /* --- Mobile Optimizations --- */
 @media (max-width: 768px) {
     .container {
@@ -343,7 +362,7 @@ body {
     /* Use CSS Grid for a completely rigid, bulletproof layout */
     .nav-container {
         display: grid;
-        grid-template-columns: 1fr auto; /* Logo takes the left space, Button takes the exact width it needs on the right */
+        grid-template-columns: 1fr auto; 
         row-gap: 1rem;
         align-items: center;
         padding: 1rem 1.25rem;
@@ -355,11 +374,15 @@ body {
         text-align: left;
     }
 
+    /* 2. Move os controlos (Idioma + Lua) para o topo à direita */
+    .nav-controls {
+        grid-column: 2; /* Segunda coluna */
+        grid-row: 1;    /* Linha do topo */
+        justify-self: end; /* Empurra tudo para a margem direita */
+    }
+
     .theme-toggle {
-        grid-column: 2; /* Second column */
-        grid-row: 1;    /* Top row */
         margin: 0;
-        justify-self: end; /* Pushes it all the way to the right edge */
     }
     
     .nav-links {
