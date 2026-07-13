@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Lourenço Moiane Jr.</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23011936'/><circle cx='50' cy='50' r='20' stroke='%2300A5E0' stroke-width='8' fill='none'/><path d='M50 30 V15 M50 70 V85 M30 50 H15 M70 50 H85' stroke='%2300A5E0' stroke-width='8' stroke-linecap='round'/></svg>">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index-pt.html" class="logo">Lourenço Moiane Jr.</a>
+            <ul class="nav-links">
+                <li><a href="index-pt.html">Início</a></li>
+                <li><a href="projects-pt.html">Projetos</a></li>
+                <li><a href="about-pt.html">Sobre</a></li>
+                <li><a href="contact-pt.html" class="active">Contacto</a></li>
+            </ul>
+            <div class="nav-controls">
+                <a href="contact.html" class="lang-switch">EN</a>
+                <button class="theme-toggle" onclick="toggleDarkMode()">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="section">
+            <div class="container">
+                <h1 class="section-title">Entre em Contacto</h1>
+                <p style="text-align: center; margin-bottom: 3rem; font-size: 1.1rem;">
+                    Vamos conversar! Estou disponível para colaborações, dúvidas ou feedback sobre os meus projetos.
+                </p>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>📧 Contacto Direto</h3>
+                        <div style="text-align: center; margin: 2rem 0;">
+                            <p style="margin-bottom: 1.5rem;">
+                                <a href="mailto:lourenco.moianejr@gmail.com" style="color: #64ffda; text-decoration: none; font-weight: bold; font-size: 1.1rem;">
+                                    lourenco.moianejr@gmail.com
+                                </a>
+                            </p>
+                            <p>Normalmente respondo num prazo de 24 horas.</p>
+                        </div>
+                        
+                        <div class="social-links" style="justify-content: center; margin-top: 2rem;">
+                            <a href="https://github.com/lourenco-lam" class="btn btn-primary">GitHub</a>
+                            <a href="https://linkedin.com/in/lourencomjr/" class="btn btn-primary">LinkedIn</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>💬 Enviar Mensagem</h3>
+                        <div style="text-align: center; margin: 2rem 0;">
+                            <p style="margin-bottom: 1.5rem;">Clique abaixo para me enviar um email diretamente:</p>
+                            <a href="mailto:lourenco.moianejr@gmail.com?subject=Mensagem através do Portefólio&body=Olá Lourenço,%0D%0A%0D%0AVi o seu portefólio e gostaria de entrar em contacto..." 
+                                class="btn btn-primary" 
+                                style="font-size: 1.1rem; padding: 15px 30px;">
+                                📧 Enviar Email
+                            </a>
+                        </div>
+                        <p style="text-align: center; color: var(--text-color);">
+                            Isto irá abrir o seu cliente de email com uma mensagem pré-preenchida...
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 3rem; text-align: center;">
+                    <h3>📍 Localização Atual</h3>
+                    <p>A residir em Lisboa, Portugal</p>
+                    <p>Aberto a oportunidades locais e colaborações remotas</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Lourenço Moiane Jr. – Todos os direitos reservados.</p>
+            <div class="social-links">
+                <a href="https://github.com/lourenco-lam" class="social-link">GitHub</a>
+                <a href="https://linkedin.com/in/lourencomjr/" class="social-link">LinkedIn</a>
+                <a href="mailto:lourenco.moianejr@gmail.com" class="social-link">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+        }
+
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // Simple form handling
+        document.querySelector('form')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Obrigado pela sua mensagem! Responderei em breve.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
