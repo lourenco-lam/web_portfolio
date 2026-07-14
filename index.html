@@ -159,18 +159,6 @@
 
     </main>
     
-    <!-- Popup de Estatísticas (Apenas Visitas) -->
-    <div id="stats-popup" class="stats-popup">
-        <div class="stats-content">
-            <div class="stat-item">
-                <span class="stat-icon" title="Views">👁️</span>
-                <span id="visit-count">--</span>
-            </div>
-        </div>
-        <!-- Barra de tempo que vai encolher durante 10 segundos -->
-        <div class="timer-bar"></div>
-    </div>
-    
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -195,43 +183,7 @@
         // Check for saved dark mode preference
         if (localStorage.getItem("darkMode") === "true") {
             document.body.classList.add("dark-mode");
-        }
-
-        // --- Lógica do Popup de Estatísticas (Apenas Visitas Globais) ---
-        
-        // O nosso espaço único na base de dados global
-        const NAMESPACE = 'lourenco_moiane_portfolio_2026';
-        
-        document.addEventListener('DOMContentLoaded', async () => {
-            const visitCountEl = document.getElementById('visit-count');
-            
-            // Mostra os 3 pontinhos enquanto vai buscar o número à internet
-            visitCountEl.innerText = '...';
-        
-            try {
-                // Envia a ordem à API: "Soma +1 e diz-me o total"
-                const resVisits = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/visits/up`);
-                const dataVisits = await resVisits.json();
-                
-                // Atualiza o texto com o total de visitas (se falhar algo, mostra 1)
-                visitCountEl.innerText = dataVisits.count || 1;
-            } catch (e) {
-                // Se o utilizador estiver sem internet, mostra um traço
-                visitCountEl.innerText = '-';
-            }
-        
-            // Mostrar o popup com animação (espera 0.5s)
-            const popup = document.getElementById('stats-popup');
-            setTimeout(() => {
-                popup.classList.add('show');
-            }, 500);
-        
-            // Esconder o popup exatamente no fim da barra (10s + 0.5s)
-            setTimeout(() => {
-                popup.classList.remove('show');
-            }, 10500); 
-        });
-        
+        }  
     </script>
 </body>
 </html>
