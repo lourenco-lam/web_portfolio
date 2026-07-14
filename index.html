@@ -203,70 +203,108 @@
             document.body.classList.add("dark-mode");
         }
 
-        // --- Lógica do Popup de Estatísticas (Versão com Controlo de Sessão) ---
+        // --- Lógica do Popup de Estatísticas (Global via API) ---
         
-        // Recupera os valores de likes e visitas guardados permanentemente
-        let visitasGlobais = parseInt(localStorage.getItem('portfolioVisitas') || '0');
-        let likesGlobais = parseInt(localStorage.getItem('portfolioLikes') || '0');
+        // Definimos o nosso espaço único na base de dados global
+        const NAMESPACE = 'lourenco_moiane_portfolio_2026';
         
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
+            const visitCountEl = document.getElementById('visit-count');
+            const likeCountEl = document.getElementById('like-count');
+            const likeIcon = document.getElementById('like-icon');
+            const likeBtn = document.getElementById('like-btn');
             
-            // 1. O SEGREDO DAS VISITAS: Verifica se é uma nova SESSÃO
-            if (!sessionStorage.getItem('sessaoAtiva')) {
-                // Se não houver 'sessaoAtiva', significa que o utilizador acabou de chegar ao site
-                visitasGlobais++;
-                localStorage.setItem('portfolioVisitas', visitasGlobais); // Guarda o novo total
-                sessionStorage.setItem('sessaoAtiva', 'true'); // Marca a sessão para não contar mais hoje nesta aba
+            // Mostrar loading enquanto vamos buscar os dados à internet
+            visitCountEl.innerText = '...';
+            likeCountEl.innerText = '...';
+        
+            // 1. Verificar os LIKES GLOBAIS
+            try {
+                const resLikes = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/likes`);
+                const dataLikes = await resLikes.json();
+                likeCountEl.innerText = dataLikes.count || 0;
+            } catch (e) {
+                likeCountEl.innerText = '0'; // Se a internet falhar, mostra 0
             }
         
-            // 2. Atualiza o texto no ecrã com o número correto
-            document.getElementById('visit-count').innerText = visitasGlobais;
-            document.getElementById('like-count').innerText = likesGlobais;
-        
-            // 3. Verificar se o dispositivo deste utilizador JÁ DEU like no passado
+            // Verifica se ESTE dispositivo já deu like no passado (para preencher o coração)
             if (localStorage.getItem('hasLiked') === 'true') {
-                document.getElementById('like-icon').innerText = '❤️';
+                likeIcon.innerText = '❤️';
             }
         
-            // 4. Mostrar o popup com uma animação fluida (espera 0.5s após abrir o site)
+            // 2. Lógica das VISITAS GLOBAIS
+            try {
+                // Se for a primeira vez que abre a aba hoje, avisa a base de dados para somar +1
+                if (!sessionStorage.getItem('sessaoAtiva')) {
+                    const resVisits = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/visits/up`);
+                    const dataVisits = await resVisits.json();
+                    visitCountEl.innerText = dataVisits.count || 1;
+                    
+                    // Bloqueia a contagem de mais visitas nesta sessão
+                    sessionStorage.setItem('sessaoAtiva', 'true');
+                } else {
+                    // Se já estava no site a navegar noutras páginas, só vai ler o número atual (não soma)
+                    const resVisits = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/visits`);
+                    const dataVisits = await resVisits.json();
+                    visitCountEl.innerText = dataVisits.count || 1;
+                }
+            } catch (e) {
+                visitCountEl.innerText = '-';
+            }
+        
+            // 3. Mostrar o popup com animação
             const popup = document.getElementById('stats-popup');
             setTimeout(() => {
                 popup.classList.add('show');
             }, 500);
         
-            // 5. Esconder o popup exatamente após os 10 segundos da barra acabarem
+            // 4. Esconder o popup
             setTimeout(() => {
                 popup.classList.remove('show');
             }, 10500); 
         });
         
-        // A função registerLike() mantém-se EXATAMENTE IGUAL à anterior
-        function registerLike() {
+        // Lógica de clicar no Like
+        async function registerLike() {
             const likeBtn = document.getElementById('like-btn');
             const likeIcon = document.getElementById('like-icon');
-            const likeCount = document.getElementById('like-count');
+            const likeCountEl = document.getElementById('like-count');
             
-            if (localStorage.getItem('hasLiked') !== 'true') {
-                likesGlobais++;
-                localStorage.setItem('portfolioLikes', likesGlobais);
-                localStorage.setItem('hasLiked', 'true');
-                
-                likeCount.innerText = likesGlobais;
-                likeIcon.innerText = '❤️';
-                
-                likeBtn.style.transform = 'scale(1.4)';
-                setTimeout(() => likeBtn.style.transform = 'scale(1)', 200);
-                
-            } else {
-                likesGlobais = Math.max(0, likesGlobais - 1); 
-                localStorage.setItem('portfolioLikes', likesGlobais);
-                localStorage.setItem('hasLiked', 'false');
-                
-                likeCount.innerText = likesGlobais;
-                likeIcon.innerText = '🤍';
-                
-                likeBtn.style.transform = 'scale(0.8)';
-                setTimeout(() => likeBtn.style.transform = 'scale(1)', 200);
+            // Animação de carregamento enquanto comunica com o servidor
+            const currentLikes = likeCountEl.innerText;
+            likeCountEl.innerText = '...';
+            
+            try {
+                if (localStorage.getItem('hasLiked') !== 'true') {
+                    // Mandar a API somar +1 Global
+                    const res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/likes/up`);
+                    const data = await res.json();
+                    
+                    likeCountEl.innerText = data.count;
+                    likeIcon.innerText = '❤️';
+                    localStorage.setItem('hasLiked', 'true');
+                    
+                    // Animação Pop
+                    likeBtn.style.transform = 'scale(1.4)';
+                    setTimeout(() => likeBtn.style.transform = 'scale(1)', 200);
+                    
+                } else {
+                    // Mandar a API subtrair -1 Global
+                    const res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/likes/down`);
+                    const data = await res.json();
+                    
+                    likeCountEl.innerText = data.count;
+                    likeIcon.innerText = '🤍';
+                    localStorage.setItem('hasLiked', 'false');
+                    
+                    // Animação encolher
+                    likeBtn.style.transform = 'scale(0.8)';
+                    setTimeout(() => likeBtn.style.transform = 'scale(1)', 200);
+                }
+            } catch (e) {
+                // Se der erro de net, volta ao número que estava
+                likeCountEl.innerText = currentLikes;
+                alert("Erro de ligação. Tenta novamente!");
             }
         }
         
