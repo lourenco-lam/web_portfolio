@@ -203,61 +203,73 @@
             document.body.classList.add("dark-mode");
         }
 
-    // --- Lógica do Popup de Estatísticas ---
-
-    // Valores simulados iniciais (Futuramente vêm de uma API)
-    let visitasGlobais = parseInt(localStorage.getItem('mockVisitas') || '124');
-    let likesGlobais = parseInt(localStorage.getItem('mockLikes') || '38');
+        // --- Lógica do Popup de Estatísticas (Versão Final com Toggle) ---
     
-    document.addEventListener('DOMContentLoaded', () => {
-        // 1. Atualizar e mostrar visitas em cada carregamento/refresh de página
-        visitasGlobais++;
-        localStorage.setItem('mockVisitas', visitasGlobais);
-        document.getElementById('visit-count').innerText = visitasGlobais;
-    
-        // 2. Mostrar os likes atuais
-        document.getElementById('like-count').innerText = likesGlobais;
-    
-        // 3. Verificar se o dispositivo deste utilizador JÁ DEU like no passado
-        if (localStorage.getItem('hasLiked') === 'true') {
-            document.getElementById('like-icon').innerText = '❤️';
-            document.getElementById('like-btn').classList.add('liked');
-        }
-    
-        // 4. Mostrar o popup com uma animação fluida (espera 0.5s após abrir o site)
-        const popup = document.getElementById('stats-popup');
-        setTimeout(() => {
-            popup.classList.add('show');
-        }, 500);
-    
-        // 5. Esconder o popup exatamente após os 10 segundos da barra de progresso acabarem
-        setTimeout(() => {
-            popup.classList.remove('show');
-        }, 10500); // 10s + 0.5s de delay inicial
-    });
-    
-    // Função chamada quando clicam no coração
-    function registerLike() {
-        const likeBtn = document.getElementById('like-btn');
+        // Inicializa a zero se for a primeira visita do utilizador
+        let visitasGlobais = parseInt(localStorage.getItem('portfolioVisitas') || '0');
+        let likesGlobais = parseInt(localStorage.getItem('portfolioLikes') || '0');
         
-        // Só permite dar like se ainda não tiver dado
-        if (localStorage.getItem('hasLiked') !== 'true') {
-            
-            // Regista o like localmente
-            likesGlobais++;
-            localStorage.setItem('mockLikes', likesGlobais);
-            localStorage.setItem('hasLiked', 'true'); // Marca o telemóvel como "Já deu like"
-    
-            // Atualiza o Visual instantaneamente
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Atualizar e mostrar visitas em cada carregamento/refresh de página
+            visitasGlobais++;
+            localStorage.setItem('portfolioVisitas', visitasGlobais);
+            document.getElementById('visit-count').innerText = visitasGlobais;
+        
+            // 2. Mostrar os likes atuais
             document.getElementById('like-count').innerText = likesGlobais;
-            document.getElementById('like-icon').innerText = '❤️';
-            likeBtn.classList.add('liked');
+        
+            // 3. Verificar se o dispositivo deste utilizador JÁ DEU like no passado
+            if (localStorage.getItem('hasLiked') === 'true') {
+                document.getElementById('like-icon').innerText = '❤️';
+            }
+        
+            // 4. Mostrar o popup com uma animação fluida (espera 0.5s após abrir o site)
+            const popup = document.getElementById('stats-popup');
+            setTimeout(() => {
+                popup.classList.add('show');
+            }, 500);
+        
+            // 5. Esconder o popup exatamente após os 10 segundos da barra acabarem
+            setTimeout(() => {
+                popup.classList.remove('show');
+            }, 10500); 
+        });
+        
+        // Função para Dar ou Tirar o Like
+        function registerLike() {
+            const likeBtn = document.getElementById('like-btn');
+            const likeIcon = document.getElementById('like-icon');
+            const likeCount = document.getElementById('like-count');
             
-            // Pequena animação de "bater do coração" ao clicar
-            likeBtn.style.transform = 'scale(1.4)';
-            setTimeout(() => likeBtn.style.transform = 'scale(1)', 200);
+            // Se ainda não deu like, adiciona
+            if (localStorage.getItem('hasLiked') !== 'true') {
+                likesGlobais++;
+                localStorage.setItem('portfolioLikes', likesGlobais);
+                localStorage.setItem('hasLiked', 'true');
+                
+                likeCount.innerText = likesGlobais;
+                likeIcon.innerText = '❤️';
+                
+                // Animação de bater (aumenta)
+                likeBtn.style.transform = 'scale(1.4)';
+                setTimeout(() => likeBtn.style.transform = 'scale(1)', 200);
+                
+            } 
+            // Se já deu like, retira
+            else {
+                // Math.max garante que o número nunca desce abaixo de zero
+                likesGlobais = Math.max(0, likesGlobais - 1); 
+                localStorage.setItem('portfolioLikes', likesGlobais);
+                localStorage.setItem('hasLiked', 'false');
+                
+                likeCount.innerText = likesGlobais;
+                likeIcon.innerText = '🤍';
+                
+                // Animação de retirar (encolhe ligeiramente)
+                likeBtn.style.transform = 'scale(0.8)';
+                setTimeout(() => likeBtn.style.transform = 'scale(1)', 200);
+            }
         }
-    }
         
     </script>
 </body>
