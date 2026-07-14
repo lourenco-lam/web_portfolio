@@ -353,64 +353,6 @@ body {
     color: var(--color-primary);
 }
 
-/* --- Stats Popup (Apenas Visitas) --- */
-.stats-popup {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: var(--nav-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid var(--card-border);
-    border-radius: 12px;
-    padding: 1rem 1.5rem;
-    box-shadow: 0 10px 30px var(--shadow-color);
-    z-index: 9999;
-    
-    transform: translateX(150%);
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    overflow: hidden;
-}
-
-.stats-popup.show {
-    transform: translateX(0);
-}
-
-.stats-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.stat-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--text-color);
-}
-
-.timer-bar {
-    height: 4px;
-    background: var(--color-primary);
-    width: 100%;
-    border-radius: 2px;
-    transform-origin: left;
-}
-
-.stats-popup.show .timer-bar {
-    animation: shrinkTimer 10s linear forwards;
-}
-
-@keyframes shrinkTimer {
-    from { transform: scaleX(1); }
-    to { transform: scaleX(0); }
-}
-
 /* --- Mobile Optimizations --- */
 @media (max-width: 768px) {
     .container {
