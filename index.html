@@ -205,8 +205,8 @@
 
 // --- Lógica do Popup de Estatísticas (Global via API) ---
 
-// Definimos o nosso espaço único na base de dados global
 const NAMESPACE = 'lourenco_moiane_portfolio_2026';
+const CORS_PROXY = 'https://api.allorigins.win/raw?url='; // Proxy CORS gratuito
 
 document.addEventListener('DOMContentLoaded', async () => {
     const visitCountEl = document.getElementById('visit-count');
@@ -214,24 +214,40 @@ document.addEventListener('DOMContentLoaded', async () => {
     const likeIcon = document.getElementById('like-icon');
     const likeBtn = document.getElementById('like-btn');
     
-    // Mostrar loading enquanto vamos buscar os dados à internet
     visitCountEl.innerText = '...';
     likeCountEl.innerText = '...';
 
+    // Função helper para fazer fetch com proxy CORS
+    async function fetchWithCORS(url) {
+        try {
+            // Primeiro tenta direto
+            const response = await fetch(url);
+            return await response.json();
+        } catch (directError) {
+            // Se falhar por CORS, tenta com proxy
+            try {
+                const proxyUrl = CORS_PROXY + encodeURIComponent(url);
+                const response = await fetch(proxyUrl);
+                return await response.json();
+            } catch (proxyError) {
+                throw new Error('Falha na conexão');
+            }
+        }
+    }
+
     // 1. Verificar os LIKES GLOBAIS
     try {
-        const resLikes = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/likes`);
-        const dataLikes = await resLikes.json();
+        const dataLikes = await fetchWithCORS(`https://api.counterapi.dev/v1/${NAMESPACE}/likes`);
         likeCountEl.innerText = dataLikes.count || 0;
     } catch (e) {
         likeCountEl.innerText = '0';
+        console.error('Erro ao carregar likes:', e);
     }
 
-    // Verifica se ESTE dispositivo já deu like (PERMANENTE - nunca remove)
+    // Verifica se ESTE dispositivo já deu like
     const hasLiked = localStorage.getItem('hasLiked') === 'true';
     if (hasLiked) {
         likeIcon.innerText = '❤️';
-        // Desabilitar o botão de like se já deu like
         likeBtn.style.pointerEvents = 'none';
         likeBtn.style.opacity = '0.7';
         likeBtn.title = 'Já deste like!';
@@ -239,23 +255,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // 2. Lógica das VISITAS GLOBAIS
     try {
-        // Verifica se já contou view nesta sessão
         if (!sessionStorage.getItem('viewCounted')) {
-            // Primeira vez na sessão - conta +1 view
-            const resVisits = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/visits/up`);
-            const dataVisits = await resVisits.json();
+            const dataVisits = await fetchWithCORS(`https://api.counterapi.dev/v1/${NAMESPACE}/visits/up`);
             visitCountEl.innerText = dataVisits.count || 1;
-            
-            // Marca que já contou nesta sessão
             sessionStorage.setItem('viewCounted', 'true');
         } else {
-            // Navegação interna - apenas lê o valor atual
-            const resVisits = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/visits`);
-            const dataVisits = await resVisits.json();
+            const dataVisits = await fetchWithCORS(`https://api.counterapi.dev/v1/${NAMESPACE}/visits`);
             visitCountEl.innerText = dataVisits.count || 0;
         }
     } catch (e) {
         visitCountEl.innerText = '-';
+        console.error('Erro ao carregar visitas:', e);
     }
 
     // 3. Mostrar o popup com animação
@@ -270,57 +280,42 @@ document.addEventListener('DOMContentLoaded', async () => {
     }, 10500); 
 });
 
-// Lógica de clicar no Like (APENAS ADICIONAR, NUNCA REMOVER)
+// Lógica de clicar no Like
 async function registerLike() {
     const likeBtn = document.getElementById('like-btn');
     const likeIcon = document.getElementById('like-icon');
     const likeCountEl = document.getElementById('like-count');
     
-    // Se já deu like, não faz nada
     if (localStorage.getItem('hasLiked') === 'true') {
-        // Animação de "já deste like"
         likeBtn.style.transform = 'scale(1.1)';
         setTimeout(() => likeBtn.style.transform = 'scale(1)', 200);
         return;
     }
     
-    // Guarda o valor atual para caso de erro
     const currentLikes = likeCountEl.innerText;
     likeCountEl.innerText = '...';
     
     try {
-        // Registra o like PERMANENTE
-        const res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/likes/up`);
-        const data = await res.json();
+        // Usando o proxy CORS
+        const proxyUrl = 'https://api.allorigins.win/raw?url=';
+        const apiUrl = `https://api.counterapi.dev/v1/${NAMESPACE}/likes/up`;
+        const response = await fetch(proxyUrl + encodeURIComponent(apiUrl));
+        const data = await response.json();
         
         likeCountEl.innerText = data.count;
         likeIcon.innerText = '❤️';
-        
-        // Marca como permanente no dispositivo
         localStorage.setItem('hasLiked', 'true');
         
-        // Desabilita o botão permanentemente
         likeBtn.style.pointerEvents = 'none';
         likeBtn.style.opacity = '0.7';
         likeBtn.title = 'Obrigado pelo like! ❤️';
         
-        // Animação Pop de agradecimento
         likeBtn.style.transform = 'scale(1.4)';
         setTimeout(() => {
             likeBtn.style.transform = 'scale(1)';
         }, 200);
         
-        // Pequena animação extra de celebração
-        likeBtn.style.transition = 'all 0.3s ease';
-        setTimeout(() => {
-            likeBtn.style.transform = 'scale(1.1)';
-        }, 300);
-        setTimeout(() => {
-            likeBtn.style.transform = 'scale(1)';
-        }, 500);
-        
     } catch (e) {
-        // Se der erro, volta ao valor anterior
         likeCountEl.innerText = currentLikes;
         console.error('Erro ao registrar like:', e);
         alert("Erro de ligação. Tenta novamente!");
