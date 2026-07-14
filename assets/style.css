@@ -353,7 +353,7 @@ body {
     color: var(--color-primary);
 }
 
-/* --- Stats Popup (Visitas & Likes) --- */
+/* --- Stats Popup (Apenas Visitas) --- */
 .stats-popup {
     position: fixed;
     bottom: 20px;
@@ -367,7 +367,6 @@ body {
     box-shadow: 0 10px 30px var(--shadow-color);
     z-index: 9999;
     
-    /* Começa escondido fora do ecrã à direita */
     transform: translateX(150%);
     transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
@@ -376,43 +375,25 @@ body {
     overflow: hidden;
 }
 
-/* Classe que o JS vai adicionar para mostrar o popup */
 .stats-popup.show {
     transform: translateX(0);
 }
 
 .stats-content {
     display: flex;
-    gap: 2rem;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
 .stat-item {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: bold;
     color: var(--text-color);
 }
 
-.like-btn {
-    background: none;
-    border: none;
-    font-size: 1.4rem;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    padding: 0;
-    display: flex;
-    align-items: center;
-}
-
-.like-btn:hover {
-    transform: scale(1.2);
-}
-
-/* Animação da barra de tempo de 10 segundos */
 .timer-bar {
     height: 4px;
     background: var(--color-primary);
