@@ -389,6 +389,10 @@ a, button, .btn, .lang-switch, .theme-toggle {
         grid-column: 1; /* First column */
         grid-row: 1;    /* Top row */
         text-align: left;
+
+        /* ADICIONA ESTAS DUAS LINHAS: */
+        font-size: 1.2rem;   /* Reduz o tamanho da letra no telemóvel */
+        white-space: nowrap; /* Obriga o texto a ficar todo na mesma linha */
     }
 
     /* 2. Move os controlos (Idioma + Lua) para o topo à direita */
