@@ -412,11 +412,6 @@ body {
     transform: scale(1.2);
 }
 
-.like-btn.liked {
-    cursor: default;
-    transform: none; /* Previne o scale no hover se já tiver dado like */
-}
-
 /* Animação da barra de tempo de 10 segundos */
 .timer-bar {
     height: 4px;
