@@ -222,7 +222,26 @@
         // Check for saved dark mode preference
         if (localStorage.getItem("darkMode") === "true") {
             document.body.classList.add("dark-mode");
-        }  
+        }
+
+        // Abrir e fechar o menu de idiomas
+        function toggleLangMenu(event) {
+            event.stopPropagation(); // Impede que o clique feche imediatamente o menu
+            document.getElementById("langMenu").classList.toggle("show");
+        }
+        
+        // Fechar o menu se clicar fora dele
+        window.onclick = function(event) {
+            if (!event.target.closest('.lang-dropdown')) {
+                const dropdowns = document.getElementsByClassName("lang-menu");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
     </script>
 </body>
 </html>
