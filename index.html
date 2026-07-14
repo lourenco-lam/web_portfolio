@@ -202,6 +202,63 @@
         if (localStorage.getItem("darkMode") === "true") {
             document.body.classList.add("dark-mode");
         }
+
+    // --- Lógica do Popup de Estatísticas ---
+
+    // Valores simulados iniciais (Futuramente vêm de uma API)
+    let visitasGlobais = parseInt(localStorage.getItem('mockVisitas') || '124');
+    let likesGlobais = parseInt(localStorage.getItem('mockLikes') || '38');
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Atualizar e mostrar visitas em cada carregamento/refresh de página
+        visitasGlobais++;
+        localStorage.setItem('mockVisitas', visitasGlobais);
+        document.getElementById('visit-count').innerText = visitasGlobais;
+    
+        // 2. Mostrar os likes atuais
+        document.getElementById('like-count').innerText = likesGlobais;
+    
+        // 3. Verificar se o dispositivo deste utilizador JÁ DEU like no passado
+        if (localStorage.getItem('hasLiked') === 'true') {
+            document.getElementById('like-icon').innerText = '❤️';
+            document.getElementById('like-btn').classList.add('liked');
+        }
+    
+        // 4. Mostrar o popup com uma animação fluida (espera 0.5s após abrir o site)
+        const popup = document.getElementById('stats-popup');
+        setTimeout(() => {
+            popup.classList.add('show');
+        }, 500);
+    
+        // 5. Esconder o popup exatamente após os 10 segundos da barra de progresso acabarem
+        setTimeout(() => {
+            popup.classList.remove('show');
+        }, 10500); // 10s + 0.5s de delay inicial
+    });
+    
+    // Função chamada quando clicam no coração
+    function registerLike() {
+        const likeBtn = document.getElementById('like-btn');
+        
+        // Só permite dar like se ainda não tiver dado
+        if (localStorage.getItem('hasLiked') !== 'true') {
+            
+            // Regista o like localmente
+            likesGlobais++;
+            localStorage.setItem('mockLikes', likesGlobais);
+            localStorage.setItem('hasLiked', 'true'); // Marca o telemóvel como "Já deu like"
+    
+            // Atualiza o Visual instantaneamente
+            document.getElementById('like-count').innerText = likesGlobais;
+            document.getElementById('like-icon').innerText = '❤️';
+            likeBtn.classList.add('liked');
+            
+            // Pequena animação de "bater do coração" ao clicar
+            likeBtn.style.transform = 'scale(1.4)';
+            setTimeout(() => likeBtn.style.transform = 'scale(1)', 200);
+        }
+    }
+        
     </script>
 </body>
 </html>
