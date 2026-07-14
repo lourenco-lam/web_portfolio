@@ -158,7 +158,25 @@
         </section>
 
     </main>
-
+    
+    <!-- Popup de Estatísticas (Visitas & Likes) -->
+    <div id="stats-popup" class="stats-popup">
+        <div class="stats-content">
+            <div class="stat-item">
+                <span class="stat-icon" title="Visitas">👁️</span>
+                <span id="visit-count">--</span>
+            </div>
+            <div class="stat-item">
+                <button id="like-btn" class="like-btn" onclick="registerLike()" title="Deixar um Like">
+                    <span id="like-icon">🤍</span>
+                </button>
+                <span id="like-count">--</span>
+            </div>
+        </div>
+        <!-- Barra de tempo que vai encolher durante 10 segundos -->
+        <div class="timer-bar"></div>
+    </div>
+    
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
