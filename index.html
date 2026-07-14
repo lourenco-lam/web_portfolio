@@ -203,19 +203,24 @@
             document.body.classList.add("dark-mode");
         }
 
-        // --- Lógica do Popup de Estatísticas (Versão Final com Toggle) ---
-    
-        // Inicializa a zero se for a primeira visita do utilizador
+        // --- Lógica do Popup de Estatísticas (Versão com Controlo de Sessão) ---
+        
+        // Recupera os valores de likes e visitas guardados permanentemente
         let visitasGlobais = parseInt(localStorage.getItem('portfolioVisitas') || '0');
         let likesGlobais = parseInt(localStorage.getItem('portfolioLikes') || '0');
         
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. Atualizar e mostrar visitas em cada carregamento/refresh de página
-            visitasGlobais++;
-            localStorage.setItem('portfolioVisitas', visitasGlobais);
-            document.getElementById('visit-count').innerText = visitasGlobais;
+            
+            // 1. O SEGREDO DAS VISITAS: Verifica se é uma nova SESSÃO
+            if (!sessionStorage.getItem('sessaoAtiva')) {
+                // Se não houver 'sessaoAtiva', significa que o utilizador acabou de chegar ao site
+                visitasGlobais++;
+                localStorage.setItem('portfolioVisitas', visitasGlobais); // Guarda o novo total
+                sessionStorage.setItem('sessaoAtiva', 'true'); // Marca a sessão para não contar mais hoje nesta aba
+            }
         
-            // 2. Mostrar os likes atuais
+            // 2. Atualiza o texto no ecrã com o número correto
+            document.getElementById('visit-count').innerText = visitasGlobais;
             document.getElementById('like-count').innerText = likesGlobais;
         
             // 3. Verificar se o dispositivo deste utilizador JÁ DEU like no passado
@@ -235,13 +240,12 @@
             }, 10500); 
         });
         
-        // Função para Dar ou Tirar o Like
+        // A função registerLike() mantém-se EXATAMENTE IGUAL à anterior
         function registerLike() {
             const likeBtn = document.getElementById('like-btn');
             const likeIcon = document.getElementById('like-icon');
             const likeCount = document.getElementById('like-count');
             
-            // Se ainda não deu like, adiciona
             if (localStorage.getItem('hasLiked') !== 'true') {
                 likesGlobais++;
                 localStorage.setItem('portfolioLikes', likesGlobais);
@@ -250,14 +254,10 @@
                 likeCount.innerText = likesGlobais;
                 likeIcon.innerText = '❤️';
                 
-                // Animação de bater (aumenta)
                 likeBtn.style.transform = 'scale(1.4)';
                 setTimeout(() => likeBtn.style.transform = 'scale(1)', 200);
                 
-            } 
-            // Se já deu like, retira
-            else {
-                // Math.max garante que o número nunca desce abaixo de zero
+            } else {
                 likesGlobais = Math.max(0, likesGlobais - 1); 
                 localStorage.setItem('portfolioLikes', likesGlobais);
                 localStorage.setItem('hasLiked', 'false');
@@ -265,7 +265,6 @@
                 likeCount.innerText = likesGlobais;
                 likeIcon.innerText = '🤍';
                 
-                // Animação de retirar (encolhe ligeiramente)
                 likeBtn.style.transform = 'scale(0.8)';
                 setTimeout(() => likeBtn.style.transform = 'scale(1)', 200);
             }
