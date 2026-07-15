@@ -207,8 +207,15 @@ a, button, .btn, .lang-switch, .theme-toggle {
     border-bottom: none;
 }
 
+/* Atualização do hover no dropdown */
 .lang-option:hover {
-    background: var(--bg-color); 
+    background-color: var(--color-primary); /* A cor azul que querias */
+    color: var(--color-white);             /* Texto muda para branco para contrastar */
+}
+
+/* Precisamos também de garantir que o ícone do visto (SVG) mude para branco no hover */
+.lang-option:hover .check-icon {
+    fill: var(--color-white);
 }
 
 .check-placeholder {
