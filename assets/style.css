@@ -74,20 +74,49 @@ a, button, .btn, .lang-switch, .theme-toggle {
 /* ==========================================================================
    3. NAVEGAÇÃO E CABEÇALHO (NAVBAR)
    ========================================================================== */
+
 /* Container do Logo + Texto */
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 10px; /* Espaço entre o logo e o texto */
+    gap: 10px;
     text-decoration: none;
     color: var(--color-primary);
 }
 
-/* O Logo propriamente dito */
-.site-logo {
-    height: 32px;      /* Define a altura do logo para combinar com o texto */
-    width: auto;       /* Mantém a proporção original da imagem */
+/* Wrapper para manter os dois logos no mesmo sítio */
+.logo-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Logo do Light Mode (define o tamanho do espaço) */
+.logo-light {
+    height: 32px;
+    width: auto;
     display: block;
+    transition: opacity 0.4s ease; /* O tempo da transição suave */
+}
+
+/* Logo do Dark Mode (fica por cima e transparente por defeito) */
+.logo-dark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 32px;
+    width: auto;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+/* --- A Magia do Dark Mode --- */
+body.dark-mode .logo-light {
+    opacity: 0; /* Esconde o logo claro */
+}
+
+body.dark-mode .logo-dark {
+    opacity: 1; /* Mostra o logo escuro */
 }
 
 /* O teu nome */
@@ -98,8 +127,9 @@ a, button, .btn, .lang-switch, .theme-toggle {
 
 /* --- Ajuste Mobile --- */
 @media (max-width: 768px) {
-    .site-logo {
-        height: 24px;  /* Logo ligeiramente mais pequeno no mobile */
+    .logo-light, 
+    .logo-dark {
+        height: 24px;  /* Reduz ambos os logos no telemóvel */
     }
 
     .logo-text {
