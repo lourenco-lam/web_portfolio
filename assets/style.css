@@ -209,8 +209,8 @@ a, button, .btn, .lang-switch, .theme-toggle {
 
 /* Atualização do hover no dropdown */
 .lang-option:hover {
-    background-color: var(--color-primary); /* A cor azul que querias */
-    color: var(--color-white);             /* Texto muda para branco para contrastar */
+    background-color: rgba(0, 165, 224, 0.2); /* Azul com 20% de opacidade */
+    color: var(--color-primary);              /* Texto mantém o azul */
 }
 
 /* Precisamos também de garantir que o ícone do visto (SVG) mude para branco no hover */
