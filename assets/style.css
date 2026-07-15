@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
 
+/* ==========================================================================
+   1. VARIÁVEIS DE CORES E TEMAS
+   ========================================================================== */
 :root {
     --color-primary: #00A5E0;
     --color-black: #000000;
@@ -30,6 +33,9 @@ body.dark-mode {
     --shadow-color: rgba(0, 0, 0, 0.4);
 }
 
+/* ==========================================================================
+   2. ESTILOS GLOBAIS E RESET
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -38,7 +44,7 @@ body.dark-mode {
 }
 
 body {
-    font-family: 'JetBrains Mono', monospace; /* This is the new line */
+    font-family: 'JetBrains Mono', monospace;
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
@@ -46,24 +52,28 @@ body {
 }
 
 /* --- Cursores Personalizados (Inspirados no Favicon) --- */
-
-/* 1. Cursor Normal (Para todo o site) */
 body {
     cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32'%3E%3Ccircle cx='16' cy='16' r='6' stroke='%2300A5E0' stroke-width='2' fill='none'/%3E%3Cpath d='M16 8 V2 M16 24 V30 M8 16 H2 M24 16 H30' stroke='%2300A5E0' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='16' r='2' fill='%2300A5E0'/%3E%3C/svg%3E") 16 16, auto;
 }
 
-/* 2. Cursor de Ação (Para Links, Botões e Elementos Clicáveis) */
 a, button, .btn, .lang-switch, .theme-toggle {
     cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32'%3E%3Ccircle cx='16' cy='16' r='7' fill='%2300A5E0'/%3E%3Cpath d='M16 7 V2 M16 25 V30 M7 16 H2 M25 16 H30' stroke='%2300A5E0' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") 16 16, pointer;
 }
 
+/* --- Layout Base --- */
 .container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
-/* Navigation */
+.justify-text {
+    text-align: justify;
+}
+
+/* ==========================================================================
+   3. NAVEGAÇÃO E CABEÇALHO (NAVBAR)
+   ========================================================================== */
 .navbar {
     position: fixed;
     top: 0;
@@ -120,20 +130,145 @@ a, button, .btn, .lang-switch, .theme-toggle {
     width: 100%;
 }
 
-.theme-toggle {
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* --- Dropdown de Idiomas --- */
+.lang-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.lang-btn {
     background: none;
     border: none;
-    font-size: 1.5rem;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 2px;
     cursor: pointer;
-    padding: 0.5rem;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.lang-btn:hover {
+    color: var(--color-primary);
+}
+
+.lang-menu {
+    position: absolute;
+    top: 140%; 
+    right: 0;
+    background: var(--nav-bg);
+    min-width: 160px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
+    display: none; 
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.lang-menu::before {
+    content: '';
+    position: absolute;
+    top: -7px;
+    right: 18px;
+    width: 12px;
+    height: 12px;
+    background: var(--nav-bg);
+    transform: rotate(45deg);
+    border-left: 1px solid var(--card-border);
+    border-top: 1px solid var(--card-border);
+}
+
+.lang-menu.show {
+    display: flex;
+}
+
+.lang-option {
+    padding: 12px 16px;
+    text-decoration: none;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1rem;
+    position: relative;
+    z-index: 1; 
+    border-bottom: 1px solid var(--card-border);
+}
+
+.lang-option:last-child {
+    border-bottom: none;
+}
+
+.lang-option:hover {
+    background: var(--bg-color); 
+}
+
+.check-placeholder {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+/* --- Botão Dark/Light Mode Animado --- */
+.theme-toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .theme-toggle:hover {
-    background-color: var(--card-bg);
+    background-color: var(--card-bg); 
+    color: var(--color-primary);
 }
 
-/* Main Content & Sections */
+.theme-toggle svg {
+    position: absolute;
+    transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1), opacity 0.4s ease;
+}
+
+/* Estado Light Mode */
+.sun-icon {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+}
+
+.moon-icon {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0);
+}
+
+/* Estado Dark Mode */
+body.dark-mode .sun-icon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0);
+}
+
+body.dark-mode .moon-icon {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+}
+
+/* ==========================================================================
+   4. ESTRUTURA PRINCIPAL E SECÇÕES
+   ========================================================================== */
 .main-content {
     margin-top: 5rem;
     min-height: calc(100vh - 5rem - 100px);
@@ -160,7 +295,7 @@ a, button, .btn, .lang-switch, .theme-toggle {
     padding-bottom: 0.5rem;
 }
 
-/* Hero Section */
+/* --- Hero Section (Início) --- */
 .hero {
     padding: 6rem 0;
     text-align: center;
@@ -185,7 +320,7 @@ a, button, .btn, .lang-switch, .theme-toggle {
     justify-content: center;
 }
 
-/* About Hero */
+/* --- About Hero (Sobre) --- */
 .about-hero {
     display: grid;
     grid-template-columns: 300px 1fr;
@@ -201,7 +336,10 @@ a, button, .btn, .lang-switch, .theme-toggle {
     box-shadow: 0 10px 30px var(--shadow-color);
 }
 
-/* Cards & Grids */
+/* ==========================================================================
+   5. COMPONENTES (Cards, Tags, Botões)
+   ========================================================================== */
+/* --- Cards --- */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -236,7 +374,7 @@ a, button, .btn, .lang-switch, .theme-toggle {
     margin-bottom: 1rem;
 }
 
-/* Tags */
+/* --- Tags --- */
 .skills-container, .project-tech {
     display: flex;
     flex-wrap: wrap;
@@ -253,7 +391,7 @@ a, button, .btn, .lang-switch, .theme-toggle {
     font-weight: 500;
 }
 
-/* Buttons */
+/* --- Botões --- */
 .btn {
     display: inline-block;
     padding: 0.75rem 1.5rem;
@@ -288,7 +426,7 @@ a, button, .btn, .lang-switch, .theme-toggle {
     background-color: rgba(0, 165, 224, 0.1);
 }
 
-/* Timeline */
+/* --- Timeline --- */
 .timeline {
     border-left: 3px solid var(--color-primary);
     padding-left: 1.5rem;
@@ -316,151 +454,6 @@ a, button, .btn, .lang-switch, .theme-toggle {
     color: var(--text-color);
 }
 
-/* Footer */
-.footer {
-    background: var(--card-bg);
-    border-top: 1px solid var(--card-border);
-    padding: 2rem 0;
-    text-align: center;
-}
-
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 1rem;
-}
-
-.social-link {
-    /* ADICIONA ESTAS 3 LINHAS: */
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    
-    color: var(--text-secondary);
-    text-decoration: none;
-}
-
-.social-link:hover {
-    color: var(--color-primary);
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* --- Language & Theme Controls --- */
-.nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.lang-switch {
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: 700;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
-}
-
-.lang-switch:hover {
-    color: var(--color-primary);
-}
-
-/* --- Mobile Optimizations --- */
-@media (max-width: 768px) {
-    .container {
-        padding: 0 1.25rem;
-    }
-
-    /* Use CSS Grid for a completely rigid, bulletproof layout */
-    .nav-container {
-        display: grid;
-        grid-template-columns: 1fr auto; 
-        row-gap: 1rem;
-        align-items: center;
-        padding: 1rem 1.25rem;
-    }
-    
-    .logo {
-        grid-column: 1; /* First column */
-        grid-row: 1;    /* Top row */
-        text-align: left;
-
-        /* ADICIONA ESTAS DUAS LINHAS: */
-        font-size: 1.2rem;   /* Reduz o tamanho da letra no telemóvel */
-        white-space: nowrap; /* Obriga o texto a ficar todo na mesma linha */
-    }
-
-    /* 2. Move os controlos (Idioma + Lua) para o topo à direita */
-    .nav-controls {
-        grid-column: 2; /* Segunda coluna */
-        grid-row: 1;    /* Linha do topo */
-        justify-self: end; /* Empurra tudo para a margem direita */
-    }
-
-    .theme-toggle {
-        margin: 0;
-    }
-    
-    .nav-links {
-        grid-column: 1 / -1; /* Spans across both columns */
-        grid-row: 2;         /* Bottom row */
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 1rem;
-    }
-
-    /* Push main content down further to account for the two-row navbar */
-    .main-content {
-        margin-top: 8.5rem; 
-    }
-    
-    /* Center the About section */
-    .about-hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 2rem;
-    }
-
-    .about-hero h1.section-title {
-        text-align: center !important;
-    }
-    
-    .hero {
-        padding: 4rem 0;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .section-title {
-        font-size: 2rem;
-    }
-    
-    /* Make buttons full width on small screens */
-    .hero-buttons {
-        flex-direction: column;
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
-    }
-
-    .hero-buttons .btn {
-        width: 100%;
-    }
-
-    /* Center tags on mobile */
-    .skills-container {
-        justify-content: center !important;
-    }
-}
-
 /* --- Skills Carousel --- */
 .skills-carousel-wrapper {
     width: 100%;
@@ -469,7 +462,6 @@ a, button, .btn, .lang-switch, .theme-toggle {
     padding: 1rem 0;
 }
 
-/* Optional: Creates a fade-out effect on the left and right edges */
 .skills-carousel-wrapper::before,
 .skills-carousel-wrapper::after {
     content: "";
@@ -495,11 +487,9 @@ a, button, .btn, .lang-switch, .theme-toggle {
     display: flex;
     gap: 1rem;
     width: max-content;
-    /* 20s is the speed. Change to 30s to make it slower, or 15s to make it faster */
     animation: slide-carousel 20s linear infinite; 
 }
 
-/* Pauses the sliding when the user hovers over it */
 .skills-carousel-track:hover {
     animation-play-state: paused;
 }
@@ -509,98 +499,128 @@ a, button, .btn, .lang-switch, .theme-toggle {
 }
 
 @keyframes slide-carousel {
-    0% { 
-        transform: translateX(0); 
-    }
-    100% { 
-        /* Shifts exactly half the width minus half the gap for a perfect loop */
-        transform: translateX(calc(-50% - 0.5rem)); 
-    }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 0.5rem)); }
 }
 
-.justify-text {
-    text-align: justify;
+/* ==========================================================================
+   6. RODAPÉ (FOOTER)
+   ========================================================================== */
+.footer {
+    background: var(--card-bg);
+    border-top: 1px solid var(--card-border);
+    padding: 2rem 0;
+    text-align: center;
 }
 
-/* --- Language Dropdown --- */
-.lang-dropdown {
-    position: relative;
+.social-links {
     display: flex;
-    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
 }
 
-.lang-btn {
-    background: none;
-    border: none;
-    color: var(--text-color);
-    display: flex;
+.social-link {
+    display: inline-flex;
     align-items: center;
-    gap: 2px;
-    cursor: pointer;
-    padding: 5px;
-    transition: color 0.3s ease;
+    gap: 8px;
+    color: var(--text-secondary);
+    text-decoration: none;
 }
 
-.lang-btn:hover {
+.social-link:hover {
     color: var(--color-primary);
 }
 
-.lang-menu {
-    position: absolute;
-    top: 140%; /* Desce um pouco para dar espaço */
-    right: 0;
-    background: var(--nav-bg);
-    min-width: 160px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    border: 1px solid var(--card-border);
-    border-radius: 6px;
-    display: none; /* Escondido por defeito */
-    flex-direction: column;
-    z-index: 1000;
+/* ==========================================================================
+   7. ANIMAÇÕES GLOBAIS
+   ========================================================================== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* O triângulo no topo do menu */
-.lang-menu::before {
-    content: '';
-    position: absolute;
-    top: -7px;
-    right: 18px;
-    width: 12px;
-    height: 12px;
-    background: var(--nav-bg);
-    transform: rotate(45deg);
-    border-left: 1px solid var(--card-border);
-    border-top: 1px solid var(--card-border);
-}
+/* ==========================================================================
+   8. RESPONSIVIDADE (MOBILE OPTIMIZATIONS)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1.25rem;
+    }
 
-.lang-menu.show {
-    display: flex;
-}
+    .nav-container {
+        display: grid;
+        grid-template-columns: 1fr auto; 
+        row-gap: 1rem;
+        align-items: center;
+        padding: 1rem 1.25rem;
+    }
+    
+    .logo {
+        grid-column: 1; 
+        grid-row: 1;    
+        text-align: left;
+        font-size: 1.2rem;   
+        white-space: nowrap; 
+    }
 
-.lang-option {
-    padding: 12px 16px;
-    text-decoration: none;
-    color: var(--text-color);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 1rem;
-    position: relative;
-    z-index: 1; /* Fica por cima do triângulo */
-    border-bottom: 1px solid var(--card-border);
-}
+    .nav-controls {
+        grid-column: 2; 
+        grid-row: 1;    
+        justify-self: end; 
+    }
 
-.lang-option:last-child {
-    border-bottom: none;
-}
+    .theme-toggle {
+        margin: 0;
+    }
+    
+    .nav-links {
+        grid-column: 1 / -1; 
+        grid-row: 2;         
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
 
-.lang-option:hover {
-    background: var(--bg-color); /* Fundo ligeiramente diferente ao passar o rato */
-}
+    .main-content {
+        margin-top: 8.5rem; 
+    }
+    
+    .about-hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+    }
 
-/* O espaço vazio quando não há o visto azul */
-.check-placeholder {
-    width: 20px;
-    height: 20px;
-    display: inline-block;
+    .about-hero h1.section-title {
+        text-align: center !important;
+    }
+    
+    .hero {
+        padding: 4rem 0;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    .skills-container {
+        justify-content: center !important;
+    }
 }
