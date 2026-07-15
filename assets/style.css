@@ -74,6 +74,39 @@ a, button, .btn, .lang-switch, .theme-toggle {
 /* ==========================================================================
    3. NAVEGAÇÃO E CABEÇALHO (NAVBAR)
    ========================================================================== */
+/* Container do Logo + Texto */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaço entre o logo e o texto */
+    text-decoration: none;
+    color: var(--color-primary);
+}
+
+/* O Logo propriamente dito */
+.site-logo {
+    height: 32px;      /* Define a altura do logo para combinar com o texto */
+    width: auto;       /* Mantém a proporção original da imagem */
+    display: block;
+}
+
+/* O teu nome */
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* --- Ajuste Mobile --- */
+@media (max-width: 768px) {
+    .site-logo {
+        height: 24px;  /* Logo ligeiramente mais pequeno no mobile */
+    }
+
+    .logo-text {
+        font-size: 1.1rem; /* Texto também reduzido para caber */
+    }
+}
+
 .navbar {
     position: fixed;
     top: 0;
