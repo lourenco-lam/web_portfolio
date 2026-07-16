@@ -345,7 +345,7 @@ body.dark-mode .moon-icon {
 }
 
 .section {
-    padding: 4rem 0;
+    padding: 2.5rem 0;
     animation: fadeIn 0.8s ease-out;
 }
 
@@ -367,7 +367,7 @@ body.dark-mode .moon-icon {
 
 /* --- Hero Section (Início) --- */
 .hero {
-    padding: 4rem 0;
+    padding: 3.5rem 0;
     text-align: center;
 }
 
